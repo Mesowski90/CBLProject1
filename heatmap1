@@ -1,5 +1,30 @@
-library(plot.matrix)
+library(dplyr)
+library(readxl)
 
+YourData <- read_excel("dataraw/YourData.xlsx"
+                                , skip = 1, col_types = c("text",
+                                                    "text", "text", "text", "text", "numeric",
+                                                                 "date", "date", "date", "text", "text"))
+YourData$DateEffect = as.Date(YourData$DateEffect)
+DateRange = seq.Date(from = as.Date("2016-01-01"), 
+                     to = as.Date("2020-12-01"), 
+                     "month")
+DateRangeC = as.character(DateRange)
+DateRangeC = substr(DateRangeC, 1, 7)
+States = Data$State
+
+States_DateEffect0 = matrix(FALSE, nrow = length(States), ncol = length(DateRange),
+                            dimnames = list(States, DateRangeC))
+StatesEffect = YourData[!is.na(YourData),]
+for (i in 1:nrow(StatesEffect)) { # i = 7
+  state = StatesEffect$State[i]
+  de =  StatesEffect$DateEffect[i]
+  States_DateEffect0[state, DateRange > de] <- TRUE
+}
+
+####PLOT######
+
+library(plot.matrix)
 
 
 plot(States_DateEffect0, col = c('turquoise4','springgreen3'), axis.col = list(side = 1, las = 1, font = 2), axis.row = list(side = 2, las = 1, font = 2), key = list(side = 4, font = 2, cex.axis = 0.45), main = "USA Cannabis Legalization Dates by States",
