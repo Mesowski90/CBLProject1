@@ -1,0 +1,6 @@
+library(plot.matrix)
+
+
+
+plot(States_DateEffect0, col = c('turquoise4','springgreen3'), axis.col = list(side = 1, las = 1, font = 2), axis.row = list(side = 2, las = 1, font = 2), key = list(side = 4, font = 2, cex.axis = 0.45), main = "USA Cannabis Legalization Dates by States",
+        sub = NULL, xlab = "Timeline", ylab = "", cex.main = 1.2, cex.lab = 0.8, cex.axis = 0.35, par(mar = c(5.1, 4.1, 4.1, 4.1)))
